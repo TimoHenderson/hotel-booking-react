@@ -19,10 +19,18 @@ const BookingsContainer = () => {
         setBookings(temp);
     }
 
+    const removeBooking = (id) => {
+        const temp = [...bookings];
+        const indexToRemove = temp.findIndex((e) => e._id === id)
+
+        temp.splice(indexToRemove, 1);
+        setBookings(temp);
+    }
+
     return (
         <>
             <BookingForm addBooking={addBooking} />
-            <BookingList bookings={bookings} />
+            <BookingList bookings={bookings} removeBooking={removeBooking} />
         </>
     );
 }
