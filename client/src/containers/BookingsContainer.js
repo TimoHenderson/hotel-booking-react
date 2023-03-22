@@ -19,10 +19,16 @@ const BookingsContainer = () => {
         setBookings(temp);
     }
 
+    const toggleCheckIn = (id) => {
+        const temp = [...bookings];
+        const indexToUpdate = temp.findIndex((e) => e._id === id)
+        temp[indexToUpdate].checked_in_status = !temp[indexToUpdate].checked_in_status
+        setBookings(temp);
+    }
+
     const removeBooking = (id) => {
         const temp = [...bookings];
         const indexToRemove = temp.findIndex((e) => e._id === id)
-
         temp.splice(indexToRemove, 1);
         setBookings(temp);
     }
@@ -30,7 +36,7 @@ const BookingsContainer = () => {
     return (
         <>
             <BookingForm addBooking={addBooking} />
-            <BookingList bookings={bookings} removeBooking={removeBooking} />
+            <BookingList bookings={bookings} removeBooking={removeBooking} toggleCheckIn={toggleCheckIn} />
         </>
     );
 }
